@@ -2,15 +2,18 @@ import { Component,OnInit } from '@angular/core';
 import { ProductModel } from '../../../models/product-model';
 import { ProductService } from '../../../services/product-service';
 import { NgFor } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
-  imports: [NgFor],
+  imports: [NgFor, CurrencyPipe, NgClass],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
 export class ProductList implements OnInit {
-  constructor(private productService:ProductService){}
+  constructor(private productService:ProductService,private router:Router){}
 
   ngOnInit(): void {
     this.loadProduct()
@@ -26,5 +29,14 @@ export class ProductList implements OnInit {
         error:(err) => console.error("ERROR IS " + err)
       }
     )
+  }
+
+  onCardProduct(id:number){
+    this.router.navigate(['/detail',id])
+    console.log('Card Click!')
+  }
+
+  onButtonBuy(){
+    console.log('Buying Click!')
   }
 }

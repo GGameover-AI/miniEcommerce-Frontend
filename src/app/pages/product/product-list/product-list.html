@@ -1,4 +1,33 @@
-<p class="text-5xl">ProductList Work!</p>
-<div *ngFor="let item of baseProducts">
-    <p>{{item.id}} {{item.name}}</p>
+<div class="bg-gray-100">
+  <div class="">Fillter</div>
+  <div class="container grid grid-cols-2 justify-center gap-2 mx-auto px-2 lg:grid-cols-4">
+    <!-- Card -->
+    <div
+      *ngFor="let item of baseProducts"
+      class="flex flex-col justify-center px-2 bg-white shadow rounded-md"
+      [ngClass]="{'opacity-40 cursor-not-allowed':item.quantity === 0}"
+      (click)="item.quantity > 0 && onCardProduct(item.id)"
+    >
+      <!--Image-->
+      <div class="flex justify-center pt-2 border-8 border-white/0">
+        <img [src]="item.imageurl" class="w-36 h-36 rounded-md" />
+      </div>
+      <!--Name-->
+      <p class="font-bold text-base truncate">{{ item.name }}</p>
+      <!--Price-->
+      <p class="text-lg font-bold">{{ item.price | currency : '฿' : 'symbol':'1.0-2' }}</p>
+      <!--Remainning-->
+      <p class="text-sm opacity-40">เหลือ : {{ item.quantity }}</p>
+      <!--BTN-->
+      <div class="flex justify-center my-1">
+        <button 
+          class="w-1/2 py-1 bg-emerald-400 rounded-2xl disabled:bg-emerald-200 disabled:cursor-not-allowed"
+          (click)="$event.stopPropagation(); onButtonBuy();"
+          [disabled]="item.quantity === 0"
+        >
+          ซื้อ
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
