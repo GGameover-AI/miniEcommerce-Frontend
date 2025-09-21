@@ -20,17 +20,38 @@ export class ProductList implements OnInit {
   }
 
   baseProducts:ProductModel[] = []
+  fillteredProduct:ProductModel[] = []
+  paginationProdcut:ProductModel[] = []
+  showProduct:ProductModel[] = []
+
+
+  fillterProduct(categoryProduct:string){
+    if(categoryProduct === 'ทั้งหมด' || categoryProduct === ''){
+      this.fillteredProduct = [...this.baseProducts]
+      console.log('แสดงรายการสินค้า ' + categoryProduct)
+    }
+    else{
+      this.fillteredProduct = this.baseProducts.filter(p => p.category === categoryProduct)
+      console.log('แสดงรายการสินค้าประเภท ' + categoryProduct)
+    }
+  }
+
+
 
   loadProduct(){
-    this.productService.fetchProduct().subscribe()
+    this.productService.fetchProduct().subscribe()//เรียกใช้ api เพื่อดึงรายการสินค้า
     this.productService.originProduct$.subscribe(
       {
-        next:(res) => {this.baseProducts = res},
-        error:(err) => console.error("ERROR IS " + err)
+        next:(res) => {this.baseProducts = res
+          this.fillterProduct('ทั้งหมด')
+        },
+        error:(err) => console.error("ERROR LoadProduct : " + err)
       }
     )
   }
 
+
+  //#region Interaction
   onCardProduct(id:number){
     this.router.navigate(['/detail',id])
     console.log('Card Click!')
@@ -39,4 +60,5 @@ export class ProductList implements OnInit {
   onButtonBuy(){
     console.log('Buying Click!')
   }
+  //#endregion
 }
