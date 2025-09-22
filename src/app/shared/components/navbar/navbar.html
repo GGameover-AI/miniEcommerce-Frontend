@@ -1,1 +1,50 @@
-<p>navbar works!</p>
+<div class="flex justify-between items-center bg-indigo-500 py-1">
+  <a routerLink="/" class="ml-4">
+    <svg
+      class="w-8 h-8 text-gray-800 dark:text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z"
+      />
+    </svg>
+  </a>
+  <input
+    type="text"
+    class="bg-white px-4 rounded-2xl placeholder:opacity-70"
+    placeholder="ค้นหา...."
+  />
+  <div class="flex">
+    <!--Cart-->
+    <a routerLink="/cart">
+      <svg
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z"
+        />
+      </svg>
+    </a>
+
+    <p class="text-white">|</p>
+    
+    <!--User-->
+    <a [routerLink]="['profile',userID]">
+      <svg
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+        />
+      </svg>
+    </a>
+  </div>
+</div>
