@@ -20,21 +20,60 @@ export class ProductList implements OnInit {
   }
 
   baseProducts:ProductModel[] = []
-  fillteredProduct:ProductModel[] = []
-  paginationProdcut:ProductModel[] = []
+  filteredProduct:ProductModel[] = []
+  paginatedProduct:ProductModel[][] = [] // เก็บ array ใน array
   showProduct:ProductModel[] = []
 
+  productsPerPage:number = 10
 
-  fillterProduct(categoryProduct:string){
+  //#region Interaction
+
+  //Filter
+  filterProduct(categoryProduct:string){
     if(categoryProduct === 'ทั้งหมด' || categoryProduct === ''){
-      this.fillteredProduct = [...this.baseProducts]
+      this.filteredProduct = [...this.baseProducts]
       console.log('แสดงรายการสินค้า ' + categoryProduct)
     }
     else{
-      this.fillteredProduct = this.baseProducts.filter(p => p.category === categoryProduct)
+      this.filteredProduct = this.baseProducts.filter(p => p.category === categoryProduct)
       console.log('แสดงรายการสินค้าประเภท ' + categoryProduct)
     }
+    this.paginateProduct()
   }
+
+  //Pagiantion
+  paginateProduct(){
+    this.paginatedProduct = []
+    let totalPerPage:number = Math.ceil(this.filteredProduct.length/this.productsPerPage)
+    let startIndex:number = 0
+    let endIndex:number = this.productsPerPage
+
+    for(let i = 0;i < totalPerPage;i++){
+      this.paginatedProduct.push(this.filteredProduct.slice(startIndex,endIndex))
+      startIndex = endIndex
+      endIndex += this.productsPerPage
+    }
+
+    this.onButtonNextPage(1)
+    console.log(this.paginatedProduct)
+  }
+
+  //Go To ProductDetail Page
+  onCardProduct(id:number){
+    this.router.navigate(['/detail',id])
+    console.log('Card Click!')
+  }
+
+  //Add Product to Cart
+  onButtonBuy(){
+    console.log('Buying Click!')
+  }
+
+  onButtonNextPage(pageNumber:number){
+    this.showProduct = this.paginatedProduct[pageNumber - 1]
+  }
+
+  //#endregion
 
 
 
@@ -43,22 +82,10 @@ export class ProductList implements OnInit {
     this.productService.originProduct$.subscribe(
       {
         next:(res) => {this.baseProducts = res
-          this.fillterProduct('ทั้งหมด')
+          this.filterProduct('ทั้งหมด')
         },
         error:(err) => console.error("ERROR LoadProduct : " + err)
       }
     )
   }
-
-
-  //#region Interaction
-  onCardProduct(id:number){
-    this.router.navigate(['/detail',id])
-    console.log('Card Click!')
-  }
-
-  onButtonBuy(){
-    console.log('Buying Click!')
-  }
-  //#endregion
 }

@@ -1,23 +1,41 @@
 <div class="bg-gray-100">
-
   <!--Fillter-->
   <div class="flex gap-4 py-1 w-full">
-    <div class="pl-4 ">Fillter</div>
-    <div class="flex ">
-      <button (click)="fillterProduct('ทั้งหมด')" class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white">ทั้งหมด</button>
-      <button (click)="fillterProduct('อาหาร')" class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white">อาหาร</button>
-      <button (click)="fillterProduct('เสื้อผ้า')" class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white">เสื้อผ้า</button>
-      <button (click)="fillterProduct('ไอที')" class="bg-emerald-300 px-2 border-b-4 border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white">ไอที</button>
+    <div class="pl-4">Fillter</div>
+    <div class="flex">
+      <button
+        (click)="filterProduct('ทั้งหมด')"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+      >
+        ทั้งหมด
+      </button>
+      <button
+        (click)="filterProduct('อาหาร')"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+      >
+        อาหาร
+      </button>
+      <button
+        (click)="filterProduct('เสื้อผ้า')"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+      >
+        เสื้อผ้า
+      </button>
+      <button
+        (click)="filterProduct('ไอที')"
+        class="bg-emerald-300 px-2 border-b-4 border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+      >
+        ไอที
+      </button>
     </div>
   </div>
-
 
   <div class="container grid grid-cols-2 justify-center gap-2 mx-auto px-2 py-2 lg:grid-cols-4">
     <!-- Card -->
     <div
-      *ngFor="let item of fillteredProduct"
+      *ngFor="let item of showProduct"
       class="flex flex-col justify-center px-2 bg-white shadow rounded-md"
-      [ngClass]="{'opacity-40 cursor-not-allowed':item.quantity === 0}"
+      [ngClass]="{ 'opacity-40 cursor-not-allowed': item.quantity === 0 }"
       (click)="item.quantity > 0 && onCardProduct(item.id)"
     >
       <!--Image-->
@@ -27,14 +45,14 @@
       <!--Name-->
       <p class="font-bold text-base truncate">{{ item.name }}</p>
       <!--Price-->
-      <p class="text-lg font-bold">{{ item.price | currency : '฿' : 'symbol':'1.0-2' }}</p>
+      <p class="text-lg font-bold">{{ item.price | currency : '฿' : 'symbol' : '1.0-2' }}</p>
       <!--Remainning-->
       <p class="text-sm opacity-40">เหลือ : {{ item.quantity }}</p>
       <!--BTN-->
       <div class="flex justify-center my-1">
-        <button 
+        <button
           class="w-1/2 py-1 bg-emerald-400 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed"
-          (click)="$event.stopPropagation(); onButtonBuy();"
+          (click)="$event.stopPropagation(); onButtonBuy()"
           [disabled]="item.quantity === 0"
         >
           ซื้อ
@@ -42,4 +60,6 @@
       </div>
     </div>
   </div>
+
+  
 </div>
