@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,HostListener,OnInit } from '@angular/core';
 import { ProductModel } from '../../../models/product-model';
 import { ProductService } from '../../../services/product-service';
 import { NgFor } from '@angular/common';
@@ -17,6 +17,7 @@ export class ProductList implements OnInit {
 
   ngOnInit(): void {
     this.loadProduct()
+    this.updateProductPerPage()
   }
 
   baseProducts:ProductModel[] = []
@@ -25,6 +26,20 @@ export class ProductList implements OnInit {
   showProduct:ProductModel[] = []
 
   productsPerPage:number = 10
+
+  @HostListener('window:resize')
+  onResize(){
+    this.updateProductPerPage()
+    this.paginateProduct()
+  }
+
+  updateProductPerPage(){
+    if(window.innerWidth < 1024){
+      this.productsPerPage = 10
+    }else{
+      this.productsPerPage = 12
+    }
+  }
 
   //#region Interaction
 
