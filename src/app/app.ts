@@ -13,6 +13,6 @@ export class App implements OnInit {
   constructor(private productService:ProductService){}
 
   ngOnInit(): void {
-      this.productService.fetchProduct()
+      this.productService.fetchProduct() // เรียก api ดึงรายการสินค้าจาก backend
   }
 }
