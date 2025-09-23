@@ -14,9 +14,9 @@ export class ProductService {
   originProduct$ = this.originProduct.asObservable()
 
   //#region API
-  fetchProduct():Observable<ProductModel[]>{
-    return this.http.get<ProductModel[]>(this.API_URL).pipe(
-      tap(res => this.originProduct.next(res))//res คือ ข้อมูลที่ดึงมาจาก backend
+  fetchProduct():void{
+    this.http.get<ProductModel[]>(this.API_URL).subscribe(
+      res => this.originProduct.next(res)
     )
   }
   //#endregion

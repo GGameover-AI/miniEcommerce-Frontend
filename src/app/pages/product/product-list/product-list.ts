@@ -70,7 +70,7 @@ export class ProductList implements OnInit {
     }
 
     this.onButtonNextPage(1)
-    console.log(this.paginatedProduct)
+    console.log('paginatedProduct : ',this.paginatedProduct)
   }
 
   //Go To ProductDetail Page
@@ -93,11 +93,11 @@ export class ProductList implements OnInit {
 
 
   loadProduct(){
-    this.productService.fetchProduct().subscribe()//เรียกใช้ api เพื่อดึงรายการสินค้า
     this.productService.originProduct$.subscribe(
       {
         next:(res) => {this.baseProducts = res
           this.filterProduct('ทั้งหมด')
+          console.log('baseProduct : ',this.baseProducts)
         },
         error:(err) => console.error("ERROR LoadProduct : " + err)
       }

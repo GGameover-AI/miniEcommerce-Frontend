@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from "./shared/components/navbar/navbar";
+import { ProductService } from './services/product-service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import { Navbar } from "./shared/components/navbar/navbar";
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
-  
+export class App implements OnInit {
+  constructor(private productService:ProductService){}
+
+  ngOnInit(): void {
+      this.productService.fetchProduct()
+  }
 }
