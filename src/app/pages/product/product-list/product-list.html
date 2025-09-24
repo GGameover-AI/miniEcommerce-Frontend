@@ -5,25 +5,25 @@
     <div class="flex">
       <button
         (click)="filterProduct('ทั้งหมด')"
-        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
       >
         ทั้งหมด
       </button>
       <button
         (click)="filterProduct('อาหาร')"
-        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
       >
         อาหาร
       </button>
       <button
         (click)="filterProduct('เสื้อผ้า')"
-        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+        class="bg-emerald-300 px-2 border-b-4 border-r border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
       >
         เสื้อผ้า
       </button>
       <button
         (click)="filterProduct('ไอที')"
-        class="bg-emerald-300 px-2 border-b-4 border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white"
+        class="bg-emerald-300 px-2 border-b-4 border-emerald-700 active:bg-emerald-500 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
       >
         ไอที
       </button>
@@ -35,7 +35,7 @@
       <!-- Card -->
       <div
         *ngFor="let item of showProduct"
-        class="flex flex-col justify-center px-2 bg-white shadow rounded-md"
+        class="flex flex-col justify-center px-2 bg-white active:bg-gray-200 shadow rounded-md hover:cursor-pointer"
         [ngClass]="{ 'opacity-40 cursor-not-allowed': item.quantity === 0 }"
         (click)="item.quantity > 0 && onCardProduct(item.id)"
       >
@@ -52,7 +52,7 @@
         <!--BTN-->
         <div class="flex justify-center my-1">
           <button
-            class="w-1/2 py-1 bg-emerald-400 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed"
+            class="w-1/2 py-1 bg-emerald-400 hover:bg-emerald-500 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed hover:cursor-pointer transition duration-200 ease-in-out"
             (click)="$event.stopPropagation(); onButtonBuy()"
             [disabled]="item.quantity === 0"
           >
@@ -65,7 +65,10 @@
 
   <div class="flex justify-center gap-4 py-2">
     <div *ngFor="let page of paginatedProduct; let i = index">
-      <button (click)="onButtonNextPage(i + 1)" class="text-white px-2 bg-indigo-500 outline-2 outline-indigo-300">
+      <button
+        (click)="onButtonNextPage(i + 1)"
+        class="text-white px-2 bg-indigo-500 outline-2 outline-indigo-300 hover:cursor-pointer"
+      >
         {{ i + 1 }}
       </button>
     </div>
