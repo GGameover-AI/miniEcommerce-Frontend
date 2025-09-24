@@ -1,5 +1,5 @@
 export interface ProductModel {
-    id: number
+    id: string
     imageurl: string
     name: string
     category: string
