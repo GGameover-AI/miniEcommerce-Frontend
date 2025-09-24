@@ -36,7 +36,7 @@
       <div
         *ngFor="let item of showProduct"
         class="flex flex-col justify-center px-2 bg-white active:bg-gray-200 shadow rounded-md hover:cursor-pointer"
-        [ngClass]="{ 'opacity-40 cursor-not-allowed': item.quantity === 0 }"
+        [ngClass]="{ 'opacity-40 cursor-not-allowed active:bg-white': item.quantity === 0 }"
         (click)="item.quantity > 0 && onCardProduct(item.id)"
       >
         <!--Image-->
