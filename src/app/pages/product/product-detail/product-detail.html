@@ -1,1 +1,49 @@
-<p>product-detail works!</p>
+<div class="container flex flex-col justify-center mx-auto px-2 pt-3 lg:pt-4 bg-white overflow-hidden">
+  <!-- Product Detail -->
+  <!--IMG-->
+  <div class="flex lg:justify-center items-center">
+    <img
+      [src]="productSelected?.imageurl"
+      class="w-full min-h-64 px-0 shadow-lg lg:max-w-lg object-cover"
+    />
+  </div>
+
+  <div class="px-2 py-4">
+    <!--Name-->
+    <p class="text-3xl font-semibold mb-2 text-gray-800">{{ productSelected?.name }}</p>
+    <!--Price-->
+    <p class="flex items-center justify-between text-4xl font-semibold text-emerald-600">
+      {{ productSelected?.price | currency : '฿' : 'symbol' : '1.0-2' }}
+      <!--BTN-->
+      <button
+        class="px-2 py-1 rounded-2xl text-base text-white bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 transition duration-200 ease-in-out"
+      >
+        เพิ่มลงตะกร้า
+      </button>
+    </p>
+  </div>
+
+  <hr class="h-px bg-gray-200 border-0 mx-2 mb-8" />
+
+  <div class="py-4 mb-8">
+    <p class="text-lg font-medium mb-3">เกี่ยวกับสินค้า :</p>
+    <p>{{ productSelected?.descript }}</p>
+  </div>
+
+  <hr class="h-px bg-gray-200 border-0 mx-2 mb-8" />
+
+  <!-- Review -->
+  <div class="py-4">
+    <p class="text-lg font-medium mb-4">รีวิว :</p>
+    <div
+      *ngFor="let u of reviewer"
+      class="flex p-4 mb-1 bg-gray-50 shadow shadow-black rounded-lg"
+    >
+      <img [src]="u.img" class="w-12 h-12 rounded-full object-cover mr-4 ring-2 ring-emerald-300" />
+      <div>
+        <p class="text-lg font-semibold">Profile Name</p>
+        <p class="mt-1">{{ u.comment }}</p>
+      </div>
+    </div>
+  </div>
+</div>
