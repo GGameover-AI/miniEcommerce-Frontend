@@ -1,17 +1,20 @@
 <nav class="sticky top-0 w-full z-50">
-  <div class="flex justify-between items-center bg-indigo-500 py-1">
+  <div class="flex justify-between lg:justify-around items-center bg-indigo-500 py-1">
   <a routerLink="/" class="ml-4">
-    <svg
-      class="w-8 h-8 text-gray-800 dark:text-white"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 24 24"
+    <div class="flex items-center">
+      <svg
+    class="w-8 h-8 text-gray-800 dark:text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 24 24"
     >
-      <path
-        d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z"
-      />
-    </svg>
-  </a>
+    <path
+    d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z"
+    />
+  </svg>
+  <p class="hidden lg:block text-4xl pb-1 text-white">miniEcommerce</p>
+    </div>
+</a>
   <input
     type="text"
     class="bg-white px-4 rounded-2xl placeholder:opacity-70"
@@ -21,7 +24,7 @@
     <!--Cart-->
     <a routerLink="/cart">
       <svg
-        class="w-6 h-6 text-gray-800 dark:text-white"
+        class="w-6 h-6 lg:w-8 lg:h-8 text-gray-800 dark:text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 24 24"
@@ -32,12 +35,12 @@
       </svg>
     </a>
 
-    <p class="text-white">|</p>
+    <p class="text-white lg:text-xl">|</p>
     
     <!--User-->
     <a [routerLink]="['profile',userID]">
       <svg
-        class="w-6 h-6 text-gray-800 dark:text-white"
+        class="w-6 h-6 lg:w-8 lg:h-8 text-gray-800 dark:text-white"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 24 24"
