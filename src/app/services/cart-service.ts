@@ -14,14 +14,38 @@ export class CartService {
     const validProduct = currentCart.find(e => e.id === newProduct.id)
 
     if(validProduct){
-
       validProduct.quantity += 1
       this.cartStock.next([...currentCart])
-
-    }else{
+    }
+    else{
       this.cartStock.next([...currentCart,{...newProduct,quantity:1}])
     }
 
     console.log("Products In Cart : ",this.cartStock.value)
+  }
+
+  changeQTY(idProduct:string,qty:number){
+    const currentCart = this.cartStock.value
+    const validProduct = currentCart.find(e => e.id === idProduct)
+
+    if(validProduct && validProduct.quantity !== 0){
+      validProduct.quantity = Math.max(1,validProduct.quantity + qty)
+      this.cartStock.next([...currentCart])
+    }else{
+      console.log("ไม่พบสินค้า")
+    }
+    
+    console.log("changed QTY : ",this.cartStock.value , validProduct)
+  }
+
+  removeFromCart(idProduct:string){
+    const currentCart = this.cartStock.value
+    const updated = currentCart.filter(e => e.id !== idProduct)
+
+    this.cartStock.next([...updated])
+  }
+
+  clearCart(){
+    this.cartStock.next([])
   }
 }
