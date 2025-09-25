@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product-service';
 import { ProductModel } from '../../../models/product-model';
 import { CurrencyPipe, NgFor } from '@angular/common';
+import { CartService } from '../../../services/cart-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,19 +12,17 @@ import { CurrencyPipe, NgFor } from '@angular/common';
   styleUrl: './product-detail.css'
 })
 export class ProductDetail implements OnInit {
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService, private cartService: CartService) { }
   ngOnInit(): void {
     this.getProduct()
   }
 
-
-
   productSelected: ProductModel | undefined
 
-
-
-  show() {
-    console.log(this.productSelected)
+  onAddToCart(){
+    if(this.productSelected !== undefined){
+      this.cartService.addToCart(this.productSelected)
+    }
   }
 
   getProduct() {
