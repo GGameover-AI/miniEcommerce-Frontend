@@ -54,13 +54,26 @@
         <!--Remainning-->
         <p class="text-sm opacity-40">เหลือ : {{ item.quantity }}</p>
         <!--BTN-->
-        <div class="flex justify-center my-1">
+        <div class="flex justify-center items-center my-1">
           <button
-            class="w-1/2 py-1 bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed hover:cursor-pointer transition duration-200 ease-in-out"
+            class="flex justify-center items-center w-1/2 py-1 bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed hover:cursor-pointer transition duration-200 ease-in-out"
             (click)="$event.stopPropagation(); onButtonBuy()"
             [disabled]="item.quantity === 0"
           >
-            ซื้อ
+            <svg
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+              />
+            </svg>
           </button>
         </div>
       </div>
