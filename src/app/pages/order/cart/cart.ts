@@ -1,11 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../../services/cart-service';
+import { ProductModel } from '../../../models/product-model';
+import { NgFor, NgIf, CurrencyPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [NgFor, NgIf, CurrencyPipe, RouterLink],
   templateUrl: './cart.html',
   styleUrl: './cart.css'
 })
-export class Cart {
+export class Cart implements OnInit {
+  constructor(private cartService: CartService) { }
 
+  ngOnInit(): void {
+    this.loadCart()
+  }
+
+  currentCart: ProductModel[] = []
+
+  //#region QTY Control
+  onIncrease(idProduct: string) {
+    this.cartService.changeQTY(idProduct, 1)
+  }
+  onDecrease(idProduct: string) {
+    this.cartService.changeQTY(idProduct, -1)
+  }
+
+  onRemove(idProduct: string) {
+    setTimeout(() => {
+      this.cartService.removeFromCart(idProduct)
+    }, 200)
+  }
+  //#endregion
+
+  //TotalPrice
+  totalPrice(){
+    return this.currentCart.reduce((sum,p) => sum + p.price,0)
+  }
+
+  loadCart() {
+    this.cartService.cartStock$.subscribe(
+      (res) => {
+        this.currentCart = res
+      }
+    )
+  }
 }

@@ -1,1 +1,115 @@
-<p>cart works!</p>
+<div class="container mx-auto px-2 pt3 bg-white min-h-screen">
+  <!--Cart Present-->
+  <!--Header-->
+  <div class="flex justify-between items-center pt-2">
+    <p class="text-xl font-semibold">สินค้าในตะกร้า :</p>
+    <p>{{ currentCart.length }} รายการ</p>
+  </div>
+
+  <hr class="h-px bg-gray-200 border-0" />
+
+  <!--CartList-->
+  <div *ngFor="let item of currentCart" class="flex items-center p-2">
+    <img [src]="item.imageurl" class="w-16 h-16 object-cover" />
+    <div class="flex flex-1 flex-col ml-1">
+      <p class="font-medium pt-1">{{ item.name }}</p>
+      <p class="text-sm text-gray-800">{{ item.price | currency : '฿' : 'symbol' : '1.0-2' }}</p>
+    </div>
+
+    <!--QTY Control-->
+    <div class="flex flex-1 justify-between ml-2">
+      <div class="flex justify-between items-center bg-gray-100 border border-gray-300 mr-4">
+        <!--Minus-->
+        <button
+          (click)="onDecrease(item.id)"
+          class="px-2 h-full bg-emerald-500 active:bg-emerald-400 border-l border-gray-300"
+        >
+          <svg
+            class="w-4 h-4 text-gray-800 dark:text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 12h14"
+            />
+          </svg>
+        </button>
+
+        <!--QTY-->
+        <span class="min-w-8 text-center">{{ item.quantity }}</span>
+
+        <!--Plus-->
+        <button
+          (click)="onIncrease(item.id)"
+          class="px-2 h-full bg-emerald-500 active:bg-emerald-400 border-r border-gray-300"
+        >
+          <svg
+            class="w-4 h-4 text-gray-800 dark:text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 12h14m-7 7V5"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!--Remove Product-->
+      <div>
+        <button
+          (click)="onRemove(item.id)"
+          class="bg-red-500 text-white px-2 py-1 active:bg-red-300 transition duration-200"
+        >
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="h-px bg-gray-200 border-0" />
+
+  <!--Total Price-->
+  <div class="mt-4" *ngIf="currentCart.length > 0">
+    <div class="flex justify-end items-center">
+      <p class="text-lg font-medium">
+        รวมทั้งสิ้น :
+        <span class="text-2xl">{{ totalPrice() | currency : '฿' : 'symbol' : '1.0-2' }}</span>
+      </p>
+    </div>
+    <div class="flex justify-end mt-2">
+      <a routerLink="/checkout" class="px-2 py-1 bg-emerald-500 text-white rounded-2xl">ชำระสินค้า</a>
+    </div>
+  </div>
+
+  <!--Cart Empty-->
+  <div
+    *ngIf="currentCart.length <= 0"
+    class="flex justify-center h-screen items-center text-center"
+  >
+    <p class="text-lg font-semibold">ไม่มีสินค้า</p>
+  </div>
+</div>
