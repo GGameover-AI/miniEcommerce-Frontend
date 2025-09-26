@@ -9,6 +9,6 @@ export const routes: Routes = [
     {path:'',component:ProductList},
     {path:'detail/:id',component:ProductDetail},
     {path:'cart',component:Cart},
-    {path:'payment',component:Checkout},
+    {path:'checkout',component:Checkout},
     {path:'profile/:id',component:Profile},
 ];
