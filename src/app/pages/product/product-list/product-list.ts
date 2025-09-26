@@ -5,6 +5,7 @@ import { NgFor } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { CartService } from '../../../services/cart-service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,7 +14,7 @@ import { NgClass } from '@angular/common';
   styleUrl: './product-list.css'
 })
 export class ProductList implements OnInit {
-  constructor(private productService:ProductService,private router:Router){}
+  constructor(private productService:ProductService,private cartService:CartService , private router:Router){}
 
   ngOnInit(): void {
     this.loadProduct()
@@ -80,8 +81,8 @@ export class ProductList implements OnInit {
   }
 
   //Add Product to Cart
-  onButtonBuy(){
-    console.log('Buying Click!')
+  onButtonBuy(product:ProductModel){
+    this.cartService.addToCart(product)
   }
 
   onButtonNextPage(pageNumber:number){

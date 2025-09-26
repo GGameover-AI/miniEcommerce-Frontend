@@ -57,7 +57,7 @@
         <div class="flex justify-center items-center my-1">
           <button
             class="flex justify-center items-center w-1/2 py-1 bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 rounded-2xl text-white disabled:bg-emerald-200 disabled:cursor-not-allowed hover:cursor-pointer transition duration-200 ease-in-out"
-            (click)="$event.stopPropagation(); onButtonBuy()"
+            (click)="$event.stopPropagation(); onButtonBuy(item)"
             [disabled]="item.quantity === 0"
           >
             <svg
