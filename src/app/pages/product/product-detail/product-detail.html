@@ -16,10 +16,23 @@
       {{ productSelected?.price | currency : '฿' : 'symbol' : '1.0-2' }}
       <!--BTN-->
       <button
-        class="px-2 py-1 rounded-2xl text-base text-white bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 transition duration-200 ease-in-out"
+        class="flex justify-center items-center px-4 py-1 mt-0.5 rounded-4xl text-base text-white bg-emerald-500 active:bg-emerald-400 hover:bg-emerald-600 transition duration-200 ease-in-out"
         (click)="onAddToCart()"
       >
-        เพิ่มลงตะกร้า
+        <svg
+              class="w-8 h-8 text-gray-800 dark:text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+              />
+            </svg>
       </button>
     </p>
   </div>
