@@ -37,7 +37,7 @@ export class Cart implements OnInit {
 
   //TotalPrice
   totalPrice(){
-    return this.currentCart.reduce((sum,p) => sum + p.price,0)
+    return this.currentCart.reduce((sum,p) => sum + (p.price * p.quantity),0)
   }
 
   loadCart() {
