@@ -16,13 +16,26 @@ export class Checkout {
     address: new FormControl('',[Validators.required])
   })
 
+    userCredit = new FormGroup({
+      cardHolder: new FormControl('',[Validators.required]),
+      cardNumber: new FormControl('',[Validators.required,Validators.maxLength(16)]),
+      cardExpdate: new FormControl('',[Validators.required]),
+      cardCVVorCVC: new FormControl('',[Validators.required,Validators.maxLength(3)])
+    })
+
   get fullName(){return this.userContact.get('fullName')}
   get phone(){return this.userContact.get('phone')}
   get email(){return this.userContact.get('email')}
   get address(){return this.userContact.get('address')}
 
+  get cardHolder(){return this.userContact.get('cardHolder')}
+  get cardNumber(){return this.userContact.get('cardNumber')}
+  get cardExpdate(){return this.userContact.get('cardExpdate')}
+  get cardCVVorCVC(){return this.userContact.get('cardCVVorCVC')}
+
   onSubmit() {
-    console.log(this.userContact.value)
+    const combineInfo = {...this.userContact.value,...this.userCredit.value}
+    console.log(combineInfo)
   }
 
   //ป้องกันการใส่ตัวอักษรอื่นนอกจาก 0-9
