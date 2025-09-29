@@ -1,0 +1,33 @@
+<div class="bg-white px-2 py-3">
+  <p class="flex mb-3 text-2xl font-semibold">ข้อมูลผู้รับ</p>
+
+  <hr class="h-px bg-gray-200 border-0 mb-5" />
+
+  <form [formGroup]="userContact" (ngSubmit)="onSubmit()" class="flex flex-col space-x-1 space-y-1 ">
+      <label class="font-medium" for="fullName">ชื่อ - นามสกุล</label>
+      <input type="text" id="fullName" formControlName="fullName" class="flex bg-gray-100 border px-1" />
+      <p class="text-red-400 text-sm" [ngClass]="{'invisible':fullName?.valid}">กรุณาใส่ชื่อ-นามสกุล</p>
+
+      <label class="font-medium" for="phone">เบอร์โทรศัพท์</label>
+      <input type="text" id="phone" maxlength="10" (keypress)="onlyNumberPhone($event)" formControlName="phone" class="w-full bg-gray-100 border px-1" />
+      <p class="text-red-400 text-sm" [ngClass]="{'invisible':phone?.valid}">กรุณาใส่เบอร์โทรศัพท์ 10 หลัก</p>
+
+      <label class="font-medium" for="email">อีเมล</label>
+      <input type="email" id="email" formControlName="email" class="bg-gray-100 border px-1" />
+      <p class="text-red-400 text-sm" [ngClass]="{'invisible':email?.valid}">ใส่อีเมลให้ถูกต้อง</p>
+
+      <label class="font-medium" for="address">ที่อยู่</label>
+      <textarea name="address" id="address" formControlName="address" class="bg-gray-100 border px-1 py-1 min-h-30 resize-none "></textarea>
+      <p class="text-red-400 text-sm" [ngClass]="{'invisible':address?.valid}">กรุณาใส่ที่อยู่</p>
+
+    <div class="flex justify-center items-center mt-5">
+      <button
+        type="submit"
+        [disabled]="!userContact.valid"
+        class="bg-emerald-500 px-2 py-1 rounded-sm text-white disabled:bg-emerald-200 disabled:text-black"
+      >
+        ตกลง
+      </button>
+    </div>
+  </form>
+</div>
