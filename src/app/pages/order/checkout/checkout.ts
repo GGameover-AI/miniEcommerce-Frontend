@@ -28,10 +28,10 @@ export class Checkout {
   get email(){return this.userContact.get('email')}
   get address(){return this.userContact.get('address')}
 
-  get cardHolder(){return this.userContact.get('cardHolder')}
-  get cardNumber(){return this.userContact.get('cardNumber')}
-  get cardExpdate(){return this.userContact.get('cardExpdate')}
-  get cardCVVorCVC(){return this.userContact.get('cardCVVorCVC')}
+  get cardHolder(){return this.userCredit.get('cardHolder')}
+  get cardNumber(){return this.userCredit.get('cardNumber')}
+  get cardExpdate(){return this.userCredit.get('cardExpdate')}
+  get cardCVVorCVC(){return this.userCredit.get('cardCVVorCVC')}
 
   onSubmit() {
     const combineInfo = {...this.userContact.value,...this.userCredit.value}
@@ -39,7 +39,7 @@ export class Checkout {
   }
 
   //ป้องกันการใส่ตัวอักษรอื่นนอกจาก 0-9
-  onlyNumberPhone(event: KeyboardEvent) {
+  onlyNumber(event: KeyboardEvent) {
     const charCode = event.charCode
     //ตัวเลขคือ ASCII code ของ keyboard
     if (charCode < 48 || charCode > 57) {

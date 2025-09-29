@@ -25,7 +25,7 @@
         type="text"
         id="phone"
         maxlength="10"
-        (keypress)="onlyNumberPhone($event)"
+        (keypress)="onlyNumber($event)"
         formControlName="phone"
         class="w-full bg-gray-100 border px-1"
       />
@@ -33,7 +33,7 @@
         กรุณาใส่เบอร์โทรศัพท์ 10 หลัก
       </p>
 
-      <label class="font-medium" for="email">อีเมล</label>
+      <label class="font-medium" for="email">อีเมล <span class="text-sm font-medium opacity-70">(optional)</span></label>
       <input type="email" id="email" formControlName="email" class="bg-gray-100 border px-1" />
       <p class="text-red-400 text-sm" [ngClass]="{ invisible: email?.valid }">ใส่อีเมลให้ถูกต้อง</p>
 
@@ -59,11 +59,11 @@
 
       <label class="font-medium" for="cardHolder">ชื่อบนบัตร</label>
       <input type="text" id="cardHolder" formControlName="cardHolder" class="flex bg-gray-100 border px-1">
-      <p class="text-red-400 text-sm" [ngClass]="{ invisible: cardHolder?.valid }">กรุณาใส่ชื่อ</p>
+      <p class="text-red-400 text-sm" [ngClass]="{ invisible: cardHolder?.valid}">กรุณาใส่ชื่อ</p>
 
       <label class="font-medium" for="cardNumber">หมายเลขบัตร</label>
       <input type="text" maxlength="16" id="cardNumber" formControlName="cardNumber" class="flex bg-gray-100 border px-1">
-      <p class="text-red-400 text-sm" [ngClass]="{ invisible: cardNumber?.valid }">กรุณาใส่หมายเลขบัตร 16 หลัก</p>
+      <p class="text-red-400 text-sm" (keypress)="onlyNumber($event)" [ngClass]="{ invisible: cardNumber?.valid }">กรุณาใส่หมายเลขบัตร 16 หลัก</p>
 
       <label class="font-medium" for="cardExpdate">วันหมดอายุ (MM/YY)</label>
       <input type="month" id="cardExpdate" formControlName="cardExpdate" class="flex bg-gray-100 border px-1">
@@ -71,7 +71,7 @@
 
       <label class="font-medium" for="cardCVVorCVC">CVV / CVC</label>
       <input type="text" maxlength="3" id="cardCVVorCVC" formControlName="cardCVVorCVC" class="flex bg-gray-100 border px-1">
-      <p class="text-red-400 text-sm" [ngClass]="{ invisible: cardCVVorCVC?.valid }">กรุณาใส่ CVC/CVV</p>
+      <p class="text-red-400 text-sm" (keypress)="onlyNumber($event)" [ngClass]="{ invisible: cardCVVorCVC?.valid }">กรุณาใส่ CVC/CVV</p>
 
     </form>
   </div>
