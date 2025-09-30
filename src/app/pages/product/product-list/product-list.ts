@@ -28,6 +28,8 @@ export class ProductList implements OnInit {
 
   productsPerPage:number = 10
   currentPage:number = 0
+  filterType:string[] = ['ทั้งหมด','อาหาร','เสื้อผ้า','ไอที']
+  currentType:string = ''
 
   @HostListener('window:resize')
   onResize(){
@@ -55,6 +57,7 @@ export class ProductList implements OnInit {
       this.filteredProduct = this.baseProducts.filter(p => p.category === categoryProduct)
       console.log('แสดงรายการสินค้าประเภท ' + categoryProduct)
     }
+    this.currentType = categoryProduct
     this.paginateProduct()
   }
 

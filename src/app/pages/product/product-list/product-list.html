@@ -1,7 +1,7 @@
 <div class="bg-gray-100">
   <!--Filter-->
-  <div class="flex items-center gap-2 py-1 w-full">
-    <div class="pl-4">
+  <div class="flex items-center py-1 w-full">
+    <div class="px-4">
       <svg
         class="w-6 h-6 text-gray-800 dark:text-gray-800"
         xmlns="http://www.w3.org/2000/svg"
@@ -14,30 +14,13 @@
       </svg>
     </div>
     <!--Filter BTN-->
-    <div class="flex text-white">
+    <div *ngFor="let item of filterType ; let i = index" class="flex text-white">
       <button
-        (click)="filterProduct('ทั้งหมด')"
-        class="bg-emerald-500 px-2 pt-1 border-b-4 border-r border-emerald-700 active:bg-emerald-600 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
+        (click)="filterProduct(item)"
+        class="bg-emerald-500 px-2 pt-1 border-b-4 border-emerald-700 active:bg-emerald-600 active:border-b-emerald-100 active:text-white hover:cursor-pointer transition-all duration-100 ease-in-out"
+        [ngClass]="{'border-r' : i < filterType.length - 1 ,'bg-emerald-600 border-b-emerald-100 text-white':item == currentType}"
       >
-        ทั้งหมด
-      </button>
-      <button
-        (click)="filterProduct('อาหาร')"
-        class="bg-emerald-500 px-2 pt-1 border-b-4 border-r border-emerald-700 active:bg-emerald-600 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
-      >
-        อาหาร
-      </button>
-      <button
-        (click)="filterProduct('เสื้อผ้า')"
-        class="bg-emerald-500 px-2 pt-1 border-b-4 border-r border-emerald-700 active:bg-emerald-600 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
-      >
-        เสื้อผ้า
-      </button>
-      <button
-        (click)="filterProduct('ไอที')"
-        class="bg-emerald-500 px-2 pt-1 border-b-4 border-emerald-700 active:bg-emerald-600 active:border-b-emerald-100 active:text-white hover:cursor-pointer"
-      >
-        ไอที
+        {{item}}
       </button>
     </div>
   </div>
