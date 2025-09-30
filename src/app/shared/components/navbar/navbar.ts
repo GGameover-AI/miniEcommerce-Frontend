@@ -4,23 +4,27 @@ import { ProductService } from '../../../services/product-service';
 import { ProductModel } from '../../../models/product-model';
 import { FormControl,ReactiveFormsModule } from '@angular/forms';
 import { NgFor,CurrencyPipe,NgIf } from '@angular/common';
+import { CartService } from '../../../services/cart-service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink,ReactiveFormsModule,NgFor,NgIf,CurrencyPipe],
+  imports: [RouterLink, ReactiveFormsModule, NgFor, NgIf, CurrencyPipe, NgClass],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
 export class Navbar implements OnInit {
 
-  constructor(private productService: ProductService,private router:Router) { }
+  constructor(private productService: ProductService,private cartService:CartService,private router:Router) { }
   ngOnInit(): void {
     this.loadProduct()
+    this.loadCart()
     this.searchObserver()
   }
 
   baseProduct: ProductModel[] = []
   filteredProduct:ProductModel[] = []
+  productsInCart:number = 0
   userID: number = 1
 
   searchBox = new FormControl('')
@@ -48,7 +52,14 @@ export class Navbar implements OnInit {
         this.baseProduct = res
         this.filteredProduct = res
       }
+    )
+  }
 
+  loadCart(){
+    this.cartService.cartStock$.subscribe(
+      res => {
+        this.productsInCart = res.length
+      }
     )
   }
 }
