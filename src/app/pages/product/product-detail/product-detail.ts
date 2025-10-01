@@ -26,7 +26,7 @@ export class ProductDetail implements OnInit {
   }
 
   getProduct() {
-    const productID: string = this.route.snapshot.paramMap.get('id')!
+    const productID:number = Number(this.route.snapshot.paramMap.get('id'))
     this.productService.originProduct$.subscribe(p => {
       this.productSelected = p.find(e => e.id === productID)
     }

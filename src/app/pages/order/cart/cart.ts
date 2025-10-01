@@ -21,14 +21,14 @@ export class Cart implements OnInit {
   currentCart: ProductModel[] = []
 
   //#region QTY Control
-  onIncrease(idProduct: string) {
+  onIncrease(idProduct: number) {
     this.cartService.changeQTY(idProduct, 1)
   }
-  onDecrease(idProduct: string) {
+  onDecrease(idProduct: number) {
     this.cartService.changeQTY(idProduct, -1)
   }
 
-  onRemove(idProduct: string) {
+  onRemove(idProduct: number) {
     setTimeout(() => {
       this.cartService.removeFromCart(idProduct)
     }, 200)

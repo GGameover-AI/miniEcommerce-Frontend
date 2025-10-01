@@ -24,7 +24,7 @@ export class CartService {
     console.log("Products In Cart : ",this.cartStock.value)
   }
 
-  changeQTY(idProduct:string,qty:number){
+  changeQTY(idProduct:number,qty:number){
     const currentCart = this.cartStock.value
     const validProduct = currentCart.find(e => e.id === idProduct)
 
@@ -38,7 +38,7 @@ export class CartService {
     console.log("changed QTY : ",this.cartStock.value , validProduct)
   }
 
-  removeFromCart(idProduct:string){
+  removeFromCart(idProduct:number){
     const currentCart = this.cartStock.value
     const updated = currentCart.filter(e => e.id !== idProduct)
 

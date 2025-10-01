@@ -79,7 +79,7 @@ export class ProductList implements OnInit {
   }
 
   //Go To ProductDetail Page
-  onCardProduct(id:string){
+  onCardProduct(id:number){
     this.router.navigate(['/detail',id])
     console.log('Card Click!')
   }

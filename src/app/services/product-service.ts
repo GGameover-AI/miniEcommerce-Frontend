@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ProductService {
   constructor(private http:HttpClient){}
-  private API_URL = 'http://localhost:3000/products'
+  private API_URL = 'https://localhost:7112/Products'
 
   private originProduct = new BehaviorSubject<ProductModel[]>([])
   originProduct$ = this.originProduct.asObservable()

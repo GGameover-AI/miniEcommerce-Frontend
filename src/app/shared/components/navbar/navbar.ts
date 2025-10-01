@@ -40,7 +40,7 @@ export class Navbar implements OnInit {
     )
   }
 
-  onSearchProduct(id:string){
+  onSearchProduct(id:number){
     this.router.navigate(['/detail',id])
     this.searchBox.setValue('')
     console.log('Card Click!')
