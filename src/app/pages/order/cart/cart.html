@@ -10,7 +10,7 @@
 
   <!--CartList-->
   <div *ngFor="let item of currentCart" class="flex items-center p-2">
-    <img [src]="item.imageurl" class="w-16 h-16 object-cover" />
+    <img [src]="item.imgurl" class="w-16 h-16 object-cover" />
     <div class="flex flex-1 flex-col ml-1">
       <p class="font-medium pt-1">{{ item.name }}</p>
       <p class="text-sm text-gray-800">{{ item.price | currency : '฿' : 'symbol' : '1.0-2' }}</p>
