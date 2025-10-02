@@ -1,4 +1,4 @@
 export interface UserLoginModel {
     username:string
-    password:number
+    password:string
 }

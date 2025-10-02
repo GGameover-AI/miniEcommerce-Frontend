@@ -1,5 +1,5 @@
 export interface UserRegisterModel {
     username:string
-    password:number
+    password:string
     email:string
 }
