@@ -1,10 +1,8 @@
 import { Component,HostListener,OnInit } from '@angular/core';
+import { NgFor,NgClass,CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { ProductModel } from '../../../models/product-model';
 import { ProductService } from '../../../services/product-service';
-import { NgFor } from '@angular/common';
-import { CurrencyPipe } from '@angular/common';
-import { Router } from '@angular/router';
-import { NgClass } from '@angular/common';
 import { CartService } from '../../../services/cart-service';
 
 @Component({
