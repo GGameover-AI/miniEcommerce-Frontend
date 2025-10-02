@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { NgIf,NgFor,CurrencyPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [NgIf,NgFor,CurrencyPipe],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })
-export class Profile {
+export class Profile implements OnInit{
 
+  ngOnInit(): void {
+      
+  }
+
+  orderList = [
+    {"id":1,"name":"g","price":120},
+    {"id":2,"name":"Ai","price":500}
+  ]
+
+  orderListWithExpand = this.orderList.map(e => ({...e,expand:false}))
+
+  onExpend(index:number){
+    this.orderListWithExpand[index].expand = !this.orderListWithExpand[index].expand
+  }
 }
