@@ -1,12 +1,30 @@
 <div class="container mx-auto max-w-md mt-4 space-y-6">
   <!--User Info-->
-  <div class="flex items-center space-x-6 p-4 bg-white">
+  <div class="flex justify-between items-center space-x-6 p-4 bg-white">
     <div>
       <img src="https://shorturl.at/kP5q2" class="w-16 h-16 rounded-full shadow" />
     </div>
     <div>
       <p class="text-2xl lg:text-4xl font-semibold">Renoxenzero</p>
       <p class="text-lg">{{ 'email@hyperai.gg.ai' }}</p>
+    </div>
+    <div>
+      <button (click)="onLogout()" class="bg-red-500 p-2 rounded-full text-center hover:bg-red-400 cursor-pointer">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2"
+          />
+        </svg>
+      </button>
     </div>
   </div>
 
@@ -37,17 +55,17 @@
 
         <!--Total-->
         <div>
-            <p>ยอดชำระ :</p>
+          <p>ยอดชำระ :</p>
         </div>
 
         <!--Adress-->
         <div>
-            <p>ที่อยู่จัดส่ง :</p>
+          <p>ที่อยู่จัดส่ง :</p>
         </div>
 
         <!--Payment-->
         <div>
-            <p>การชำระ : บัตรเครดิต</p>
+          <p>การชำระ : บัตรเครดิต</p>
         </div>
       </div>
     </div>

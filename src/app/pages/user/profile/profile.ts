@@ -1,5 +1,6 @@
 import { NgIf,NgFor,CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'app-profile',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './profile.css'
 })
 export class Profile implements OnInit{
+
+  constructor(private authService:AuthService){}
 
   ngOnInit(): void {
       
@@ -22,5 +25,9 @@ export class Profile implements OnInit{
 
   onExpend(index:number){
     this.orderListWithExpand[index].expand = !this.orderListWithExpand[index].expand
+  }
+
+  onLogout(){
+    this.authService.logout()
   }
 }
