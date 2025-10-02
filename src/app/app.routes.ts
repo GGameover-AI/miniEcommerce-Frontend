@@ -6,13 +6,16 @@ import { Cart } from './pages/order/cart/cart';
 import { Checkout } from './pages/order/checkout/checkout';
 import { Login } from './pages/user/login/login';
 import { Register } from './pages/user/register/register';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
-    {path:'',component:ProductList},
     {path:'login',component:Login},
     {path:'register',component:Register},
-    {path:'detail/:id',component:ProductDetail},
-    {path:'cart',component:Cart},
-    {path:'checkout',component:Checkout},
-    {path:'profile',component:Profile},
+
+
+    {path:'',component:ProductList,canActivate:[authGuard]},
+    {path:'detail/:id',component:ProductDetail,canActivate:[authGuard]},
+    {path:'cart',component:Cart,canActivate:[authGuard]},
+    {path:'checkout',component:Checkout,canActivate:[authGuard]},
+    {path:'profile',component:Profile,canActivate:[authGuard]},
 ];
