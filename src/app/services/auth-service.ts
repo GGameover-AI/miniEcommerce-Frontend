@@ -21,6 +21,7 @@ export class AuthService {
         res => {
           if(res && res.token){
             sessionStorage.setItem(this.tokenKey,res.token)
+            this.route.navigate([''])
           }
         }
       )
