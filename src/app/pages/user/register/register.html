@@ -1,1 +1,83 @@
-<p>register works!</p>
+<div class="flex flex-col mx-auto justify-center items-center gap-y-20 h-screen">
+  <div
+    class="flex flex-col justify-center p-8 bg-indigo-600 text-white rounded-3xl shadow-2xl shadow-violet-400"
+  >
+    <p class="relative text-2xl items-center font-semibold text-center">
+      สมัครสมาชิก
+      <a [routerLink]="['/login']" class="absolute right-11/12 top-1.5">
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-emerald-100"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m15 19-7-7 7-7"
+          />
+        </svg>
+      </a>
+    </p>
+
+    <form [formGroup]="formRegister" (ngSubmit)="onRegister()" class="flex flex-col space-y-8">
+      <div>
+        <label for="username">Username</label>
+        <input
+          type="text"
+          minlength="8"
+          maxlength="16"
+          id="username"
+          formControlName="username"
+          class="text-black bg-gray-100 w-full p-2 mt-1 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:opacity-70 transition duration-150"
+        />
+        <p class="text-sm pt-2 px-2 text-red-400" [ngClass]="{ invisible:username?.valid}">
+        ชื่อผู้ใช้ต้องมีความยาว 8 - 16 ตัว
+    </p>
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          minlength="10"
+          id="password"
+          formControlName="password"
+          class="text-black bg-gray-100 w-full p-2 mt-1 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:opacity-70 transition duration-150"
+        />
+        <p class="text-sm pt-2 px-2 text-red-400" [ngClass]="{ invisible:password?.valid}">รหัสผ่านต้องมีความยาวอย่างน้อย 10 ตัว</p>
+      </div>
+
+      <div>
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          class="text-black bg-gray-100 w-full p-2 mt-1 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:opacity-70 transition duration-150"
+        />
+        <p class="text-sm pt-2 px-2 text-red-400" [ngClass]="{ invisible:passwordMathAlert()}">รหัสผ่านไม่ตรง</p>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="text-black bg-gray-100 w-full p-2 mt-1 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:opacity-70 transition duration-150"
+        />
+        <p class="text-sm pt-2 px-2 text-red-400" [ngClass]="{ invisible:email?.valid}">ใส่อีเมให้ถูกต้อง</p>
+      </div>
+
+      <button
+        type="submit"
+        class="mx-auto max-w-1/2 p-2 text-center shadow bg-emerald-500 hover:bg-emerald-400 hover:scale-105 rounded-2xl transition duration-150"
+      >
+        ยืนยัน
+      </button>
+    </form>
+  </div>
+</div>
