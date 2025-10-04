@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { AuthService } from '../../../services/auth-service';
 import { UserRegisterModel } from '../../../models/user-register-model';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -12,14 +12,14 @@ import { NgClass } from '@angular/common';
   styleUrl: './register.css'
 })
 export class Register {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private route:Router) { }
 
   //#region Form
   formRegister = new FormGroup({
     username: new FormControl('', [Validators.required,Validators.minLength(8),Validators.maxLength(16)]),
     password: new FormControl('', [Validators.required,Validators.minLength(10)]),
     confirmPassword: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required,Validators.email]),
   }, { validators: (form) => this.passwordMathCheck })
   //#endregion Form
 
@@ -64,6 +64,8 @@ export class Register {
           error: (err) => { alert(err.error?.message || 'เกิดข้อผิดพลาด') }
         }
       )
+
+      this.route.navigate(['/login'])
     } else {
       alert('ข้อมูลบางส่วนไม่ถูกต้อง')
     }
