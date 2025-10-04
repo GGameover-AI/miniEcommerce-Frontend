@@ -18,16 +18,17 @@ export class Login {
     password: new FormControl('', [Validators.required])
   })
 
-  usernameBearer: string = this.formLogin.get('username')?.value as string
-  passwordBearer: string = this.formLogin.get('password')?.value as string
-
-  loginPayload: UserLoginModel = { "username": this.usernameBearer, "password": this.passwordBearer }
-
   onLogin() {
     if (this.formLogin.valid) {
-      this.authService.login(this.loginPayload).subscribe(
+      const loginPayload: UserLoginModel = {
+              "username": this.formLogin.get('username')?.value as string,
+              "password": this.formLogin.get('password')?.value as string,
+            }
+
+
+      this.authService.login(loginPayload).subscribe(
         {
-          error: (err) => alert(err.error?.message ||"เกิดข้อมผิดพลาด")
+          error: (err) => alert(err.error?.message || "เกิดข้อมผิดพลาด")
         })
     }
   }
