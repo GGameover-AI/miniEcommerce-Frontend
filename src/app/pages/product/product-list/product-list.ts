@@ -31,7 +31,6 @@ export class ProductList implements OnInit {
 
   @HostListener('window:resize')
   onResize(){
-    this.updateProductPerPage()
     this.paginateProduct()
   }
 
@@ -72,6 +71,7 @@ export class ProductList implements OnInit {
       endIndex += this.productsPerPage
     }
 
+    this.updateProductPerPage()//
     this.onButtonNextPage(1) //Index ที่ 0 ของ pagination / แสดงหน้าที่ 1
     console.log('paginatedProduct : ',this.paginatedProduct)
   }
@@ -102,6 +102,7 @@ export class ProductList implements OnInit {
     this.productService.originProduct$.subscribe(
       {
         next:(res) => {this.baseProducts = res
+          this.updateProductPerPage()
           this.filterProduct('ทั้งหมด')
           console.log('baseProduct : ',this.baseProducts)
         },
