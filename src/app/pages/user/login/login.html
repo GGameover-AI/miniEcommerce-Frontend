@@ -20,7 +20,7 @@
   >
     <p class="text-2xl font-semibold text-center">ลงชื่อเข้าใช้</p>
 
-    <form [formGroup]="formLogin" (ngSubmit)="onLogin()" class="flex flex-col space-y-8">
+    <form [formGroup]="formLogin" autocomplete="off" (ngSubmit)="onLogin()" class="flex flex-col space-y-8">
       <!--Username-->
       <div>
         <label for="username">Username</label>

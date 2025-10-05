@@ -7,7 +7,7 @@
 
     <hr class="h-px bg-gray-200 border-0 mb-5" />
 
-    <form [formGroup]="userContact" class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4">
+    <form [formGroup]="userContact" autocomplete="off" class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4">
       <!--Fullname-->
       <div class="lg:col-span-2">
         <label class="font-medium block mb-1" for="fullName">ชื่อ - นามสกุล</label>
@@ -77,7 +77,7 @@
 
     <hr class="h-px bg-gray-200 border-0 mb-5" />
 
-    <form [formGroup]="userCredit" class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4">
+    <form [formGroup]="userCredit"  autocomplete="off" class="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-4">
       <!--Card holder-->
       <div class="lg:col-span-2">
         <label class="font-medium block mb-1" for="cardHolder">ชื่อบนบัตร</label>

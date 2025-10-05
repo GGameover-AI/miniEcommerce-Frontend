@@ -22,7 +22,7 @@
       </a>
     </p>
 
-    <form [formGroup]="formRegister" (ngSubmit)="onRegister()" class="flex flex-col space-y-8">
+    <form [formGroup]="formRegister" autocomplete="off" (ngSubmit)="onRegister()" class="flex flex-col space-y-8">
       <div>
         <label for="username">Username</label>
         <input
@@ -45,7 +45,6 @@
           minlength="10"
           id="password"
           formControlName="password"
-          autocomplete="off"
           class="text-black bg-gray-100 w-full p-2 mt-1 rounded-2xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 placeholder:opacity-70 transition duration-150"
         />
         <p class="text-sm pt-2 px-2 text-red-400" [ngClass]="{ invisible:password?.valid}">รหัสผ่านต้องมีความยาวอย่างน้อย 10 ตัว</p>

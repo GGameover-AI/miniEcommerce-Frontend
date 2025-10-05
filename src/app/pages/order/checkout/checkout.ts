@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms'
 import { NgClass } from '@angular/common';
+import { CartService } from '../../../services/cart-service';
+import { ProductModel } from '../../../models/product-model';
 
 @Component({
   selector: 'app-checkout',
@@ -9,6 +11,9 @@ import { NgClass } from '@angular/common';
   styleUrl: './checkout.css'
 })
 export class Checkout {
+  constructor(private cartService:CartService){}
+
+
     userContact = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
@@ -34,8 +39,8 @@ export class Checkout {
   get cardCVVorCVC(){return this.userCredit.get('cardCVVorCVC')}
 
   onSubmit() {
-    const combineInfo = {...this.userContact.value,...this.userCredit.value}
-    console.log(combineInfo)
+    const formInfo = {...this.userContact.value,...this.userCredit.value}
+    
   }
 
   //ป้องกันการใส่ตัวอักษรอื่นนอกจาก 0-9
