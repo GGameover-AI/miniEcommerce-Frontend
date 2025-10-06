@@ -9,6 +9,6 @@ export interface OrderModel {
     cardNumber:number
     cardHolder:string
     cardExp:string
-    Cvc:number
+    cvc:number
     products:ProductModel[]
 }
