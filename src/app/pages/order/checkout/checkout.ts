@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { NgClass } from '@angular/common';
 import { CartService } from '../../../services/cart-service';
 import { ProductModel } from '../../../models/product-model';
+import { OrderModel } from '../../../models/order-model';
+import { OrderService } from '../../../services/order-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -11,36 +14,64 @@ import { ProductModel } from '../../../models/product-model';
   styleUrl: './checkout.css'
 })
 export class Checkout {
-  constructor(private cartService:CartService){}
+  constructor(private cartService: CartService ,private orderService:OrderService,private route:Router) { }
 
 
-    userContact = new FormGroup({
+  userContact = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     email: new FormControl('', [Validators.email]),
-    address: new FormControl('',[Validators.required])
+    address: new FormControl('', [Validators.required])
   })
 
-    userCredit = new FormGroup({
-      cardHolder: new FormControl('',[Validators.required]),
-      cardNumber: new FormControl('',[Validators.required,Validators.maxLength(16)]),
-      cardExpdate: new FormControl('',[Validators.required]),
-      cardCVVorCVC: new FormControl('',[Validators.required,Validators.maxLength(3)])
-    })
+  userCredit = new FormGroup({
+    cardHolder: new FormControl('', [Validators.required]),
+    cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16)]),
+    cardExpdate: new FormControl('', [Validators.required]),
+    cardCVVorCVC: new FormControl('', [Validators.required, Validators.maxLength(3)])
+  })
 
-  get fullName(){return this.userContact.get('fullName')}
-  get phone(){return this.userContact.get('phone')}
-  get email(){return this.userContact.get('email')}
-  get address(){return this.userContact.get('address')}
+  get fullName() { return this.userContact.get('fullName') }
+  get phone() { return this.userContact.get('phone') }
+  get email() { return this.userContact.get('email') }
+  get address() { return this.userContact.get('address') }
 
-  get cardHolder(){return this.userCredit.get('cardHolder')}
-  get cardNumber(){return this.userCredit.get('cardNumber')}
-  get cardExpdate(){return this.userCredit.get('cardExpdate')}
-  get cardCVVorCVC(){return this.userCredit.get('cardCVVorCVC')}
+  get cardHolder() { return this.userCredit.get('cardHolder') }
+  get cardNumber() { return this.userCredit.get('cardNumber') }
+  get cardExpdate() { return this.userCredit.get('cardExpdate') }
+  get cardCVVorCVC() { return this.userCredit.get('cardCVVorCVC') }
 
   onSubmit() {
-    const formInfo = {...this.userContact.value,...this.userCredit.value}
-    
+    this.cartService.cartStock$.subscribe(
+      {
+        next: (res) => {
+          const orderInfo: OrderModel = {
+            recipient: this.fullName?.value as string,
+            phone: Number(this.phone?.value),
+            email: this.email?.value as string,
+            address: this.address?.value as string,
+            payment: "CreditCard",
+            cardNumber: Number(this.cardNumber?.value),
+            cardHolder: this.cardHolder?.value as string,
+            cardExp: this.cardExpdate?.value as string,
+            Cvc: Number(this.cardCVVorCVC?.value),
+            products: res
+          }
+
+          this.orderService.createOrder(orderInfo).subscribe(
+            {
+              next:(res) => {
+                alert(res)
+                this.route.navigate([''])
+              },
+              error:(err)=>{
+                alert(err.error?.message)
+              }
+            }
+          )
+        }
+      }
+    )
   }
 
   //ป้องกันการใส่ตัวอักษรอื่นนอกจาก 0-9
