@@ -6,5 +6,6 @@ export interface OrderHistoryModel {
     email?:string
     address:string
     payment:string
+    date:string
     products:ProductModel[]
 }
