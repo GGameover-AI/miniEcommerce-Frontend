@@ -26,8 +26,8 @@ export class OrderService {
   }
 
   //สร้างรายการสั่งซื้อ
-  createOrder(orderInfo:OrderModel): Observable<OrderModel> {
-    return this.http.post<OrderModel>(`${this.API_URL}/CreateOrder`, orderInfo)
+  createOrder(orderInfo:OrderModel): Observable<string> {
+    return this.http.post<string>(`${this.API_URL}/CreateOrder`, orderInfo)
   }
 
 }
