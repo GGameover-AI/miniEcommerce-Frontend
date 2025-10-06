@@ -5,6 +5,10 @@ export interface OrderModel {
     phone:number
     email?:string
     address:string
-    products:ProductModel[]
     payment:string
+    cardNumber:number
+    cardHolder:string
+    cardExp:string
+    Cvc:number
+    products:ProductModel[]
 }
