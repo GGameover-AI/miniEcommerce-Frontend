@@ -5,7 +5,7 @@ export interface OrderModel {
     phone:number
     email?:string
     address:string
-    payment:string
+    paymentType:string
     cardNumber:number
     cardHolder:string
     cardExp:string

@@ -50,11 +50,11 @@ export class Checkout {
             phone: Number(this.phone?.value),
             email: this.email?.value as string,
             address: this.address?.value as string,
-            payment: "CreditCard",
+            paymentType: "CreditCard",
             cardNumber: Number(this.cardNumber?.value),
             cardHolder: this.cardHolder?.value as string,
             cardExp: this.cardExpdate?.value as string,
-            Cvc: Number(this.cardCVVorCVC?.value),
+            cvc: Number(this.cardCVVorCVC?.value),
             products: res
           }
 
