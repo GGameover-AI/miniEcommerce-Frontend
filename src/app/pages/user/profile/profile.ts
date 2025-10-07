@@ -4,10 +4,11 @@ import { AuthService } from '../../../services/auth-service';
 import { OrderService } from '../../../services/order-service';
 import { OrderHistoryModel } from '../../../models/order-history-model';
 import { UserInfoModel } from '../../../models/user-info-model';
+import { ɵInternalFormsSharedModule } from "@angular/forms";
 
 @Component({
   selector: 'app-profile',
-  imports: [NgIf, NgFor, CurrencyPipe],
+  imports: [NgIf, NgFor, CurrencyPipe, ɵInternalFormsSharedModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })
@@ -24,7 +25,8 @@ export class Profile implements OnInit {
   userInfo: UserInfoModel = { sub: '', unique_name: '', email: '' }
 
   // ถ้าไม่ประกาศ (OrderHistoryModel & {expand:boolean})[] expend ใน onExpend จะหาไม่เจอ
-  orderListWithExpand:(OrderHistoryModel & {expand:boolean})[] = [] 
+  //& {expand:boolean,total:number} คือการประกาศ field เพิ่ม
+  orderListWithExpand:(OrderHistoryModel & {expand:boolean,total:number})[] = [] 
 
   onExpend(index: number) {
     this.orderListWithExpand[index].expand = !this.orderListWithExpand[index].expand
@@ -43,7 +45,12 @@ export class Profile implements OnInit {
       {
         next: (res) => { 
           this.orderList = res 
-          this.orderListWithExpand =  this.orderList.map(e => ({ ...e, expand: false }))
+          this.orderListWithExpand =  this.orderList.map(e => (
+            { 
+              ...e, 
+              expand: false,
+              total:e.products.reduce((sum,p) => sum + p.price,0) 
+            }))
         },
         error: (err) => console.log(err)
       }

@@ -5,8 +5,8 @@
       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="w-16 h-16 rounded-full shadow" />
     </div>
     <div>
-      <p class="text-2xl lg:text-4xl font-semibold">Renoxenzero</p>
-      <p class="text-lg">{{ 'email@hyperai.gg.ai' }}</p>
+      <p class="text-2xl lg:text-4xl font-semibold">{{userInfo.unique_name}}</p>
+      <p class="text-lg">{{ userInfo.email }}</p>
     </div>
     <div>
       <button (click)="onLogout()" class="bg-red-500 p-2 rounded-full text-center hover:bg-red-400 cursor-pointer">
@@ -38,29 +38,29 @@
         class="flex justify-between items-center p-2 lg:p-2 bg-emerald-500 text-white text-sm lg:text-base hover:bg-emerald-400 active:bg-emerald-600 cursor-pointer"
         (click)="onExpend(i)"
       >
-        <p class="select-none">{{ 'OrderID:23' }}</p>
-        <p class="select-none">{{ '01/01/2025' }}</p>
-        <p class="select-none">{{ '10 รายการ' }}</p>
-        <p class="select-none">{{ 5000 | currency : '฿' : 'symbol' : '1.0-2' }}</p>
+        <p class="select-none">{{ item.dateOrder }}</p>
+        <p class="select-none">{{ item.products.length }}</p>
+        <p class="select-none">{{ item.total | currency : '฿' : 'symbol' : '1.0-2' }}
+        </p>
       </div>
 
       <div *ngIf="item.expand" class="bg-gray-100 p-2 space-y-4">
         <!--products-->
         <div>
           <p>สินค้า :</p>
-          <div>
-            <p>{{ 'รายการสินค้า' }}</p>
+          <div *ngFor="let product of item.products">
+            <p>{{ product.name }}</p>
           </div>
         </div>
 
         <!--Total-->
         <div>
-          <p>ยอดชำระ :</p>
+          <p>ยอดชำระ : {{item.total}}</p>
         </div>
 
         <!--Adress-->
         <div>
-          <p>ที่อยู่จัดส่ง :</p>
+          <p>ที่อยู่จัดส่ง : {{item.address}}</p>
         </div>
 
         <!--Payment-->
