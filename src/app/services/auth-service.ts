@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UserLoginModel } from '../models/user-login-model';
 import { Observable, tap } from 'rxjs';
 import { UserRegisterModel } from '../models/user-register-model';
+import { UserInfoModel } from '../models/user-info-model';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +41,14 @@ export class AuthService {
 
   getToken():string|null{
     return sessionStorage.getItem(this.tokenKey)
+  }
+
+  getUserInfo():any{
+    const token = this.getToken()
+    if(!token) return
+    const decoded = jwtDecode<UserInfoModel>(token)
+
+    return decoded
   }
 
   isLogin():boolean{
