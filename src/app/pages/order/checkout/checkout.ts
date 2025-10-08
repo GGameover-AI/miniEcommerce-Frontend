@@ -47,11 +47,11 @@ export class Checkout {
         next: (res) => {
           const orderInfo: OrderModel = {
             recipient: this.fullName?.value as string,
-            phone: Number(this.phone?.value),
+            phone: this.phone?.value as string,
             email: this.email?.value as string,
             address: this.address?.value as string,
             paymentType: "CreditCard",
-            cardNumber: Number(this.cardNumber?.value),
+            cardNumber: this.cardNumber?.value as string,
             cardHolder: this.cardHolder?.value as string,
             cardExp: this.cardExpdate?.value as string,
             cvc: Number(this.cardCVVorCVC?.value),
@@ -65,6 +65,7 @@ export class Checkout {
                 this.route.navigate([''])
               },
               error:(err)=>{
+                console.log(err)
                 alert(err.error?.message)
               }
             }
