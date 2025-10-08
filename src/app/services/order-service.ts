@@ -35,9 +35,9 @@ export class OrderService {
   }
 
   //สร้างรายการสั่งซื้อ
-  createOrder(orderInfo:OrderModel): Observable<string> {
+  createOrder(orderInfo:OrderModel): Observable<any> {
     const headers = this.getHeader()
-    return this.http.post<string>(`${this.API_URL}`, orderInfo,{headers})
+    return this.http.post<any>(`${this.API_URL}`, orderInfo,{headers})
   }
 
 }
