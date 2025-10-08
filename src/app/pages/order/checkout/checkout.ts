@@ -66,7 +66,7 @@ export class Checkout {
               },
               error:(err)=>{
                 console.log(err)
-                alert(err.error?.message)
+                alert(err.error)
               }
             }
           )
