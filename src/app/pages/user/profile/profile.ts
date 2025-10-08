@@ -50,7 +50,7 @@ export class Profile implements OnInit {
             { 
               ...e, 
               expand: false,
-              total:e.products.reduce((sum,p) => sum + p.price,0) 
+              total:e.products.reduce((sum,p) => sum + (p.price*p.quantity),0) 
             }))
         },
         error: (err) => console.log(err)

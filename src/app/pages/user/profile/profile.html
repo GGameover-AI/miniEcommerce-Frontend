@@ -39,7 +39,7 @@
         (click)="onExpend(i)"
       >
         <p class="select-none">{{ item.dateOrder }}</p>
-        <p class="select-none">{{ item.products.length }}</p>
+        <p class="select-none">สินค้า {{ item.products.length }} รายการ</p>
         <p class="select-none">{{ item.total | currency : '฿' : 'symbol' : '1.0-2' }}
         </p>
       </div>
@@ -48,14 +48,29 @@
         <!--products-->
         <div>
           <p>สินค้า :</p>
-          <div *ngFor="let product of item.products">
-            <p>{{ product.name }}</p>
+          <div *ngFor="let product of item.products" class="flex items-center space-x-2 space-y-2">
+            <div>
+              <img [src]="product.imgurl" class="w-8 h-8 lg:w-12 lg:h-12">
+            </div>
+            <div>
+              <p>{{ product.name }}   x   {{product.quantity}}</p>
+            </div>
           </div>
         </div>
 
         <!--Total-->
         <div>
           <p>ยอดชำระ : {{item.total}}</p>
+        </div>
+
+        <!--Recipient-->
+        <div>
+          <p>ชื่อผู้รับ : {{item.recipient}}</p>
+        </div>
+
+        <!--Phone-->
+        <div>
+          <p>เบอร์โทรศัพท์ : {{item.phone}}</p>
         </div>
 
         <!--Adress-->
