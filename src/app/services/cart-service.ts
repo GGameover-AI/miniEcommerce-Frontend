@@ -21,7 +21,7 @@ export class CartService {
       this.cartStock.next([...currentCart,{...newProduct,quantity:1}])
     }
 
-    console.log("Products In Cart : ",this.cartStock.value)
+    //console.log("Products In Cart : ",this.cartStock.value)
   }
 
   changeQTY(idProduct:number,qty:number){
@@ -32,10 +32,10 @@ export class CartService {
       validProduct.quantity = Math.max(1,validProduct.quantity + qty)
       this.cartStock.next([...currentCart])
     }else{
-      console.log("ไม่พบสินค้า")
+      alert("ไม่พบสินค้า")
     }
     
-    console.log("changed QTY : ",this.cartStock.value , validProduct)
+    //console.log("changed QTY : ",this.cartStock.value , validProduct)
   }
 
   removeFromCart(idProduct:number){

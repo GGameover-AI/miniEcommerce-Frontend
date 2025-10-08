@@ -48,11 +48,11 @@ export class ProductList implements OnInit {
   filterProduct(categoryProduct:string){
     if(categoryProduct === 'ทั้งหมด' || categoryProduct === ''){
       this.filteredProduct = [...this.baseProducts]
-      console.log('แสดงรายการสินค้า ' + categoryProduct)
+      //console.log('แสดงรายการสินค้า ' + categoryProduct)
     }
     else{
       this.filteredProduct = this.baseProducts.filter(p => p.category === categoryProduct)
-      console.log('แสดงรายการสินค้าประเภท ' + categoryProduct)
+      //console.log('แสดงรายการสินค้าประเภท ' + categoryProduct)
     }
     this.currentType = categoryProduct
     this.paginateProduct()
@@ -73,13 +73,13 @@ export class ProductList implements OnInit {
 
     this.updateProductPerPage()//
     this.onButtonNextPage(1) //Index ที่ 0 ของ pagination / แสดงหน้าที่ 1
-    console.log('paginatedProduct : ',this.paginatedProduct)
+    //console.log('paginatedProduct : ',this.paginatedProduct)
   }
 
   //Go To ProductDetail Page
   onCardProduct(id:number){
     this.router.navigate(['/detail',id])
-    console.log('Card Click!')
+    //console.log('Card Click!')
   }
 
   //Add Product to Cart
@@ -91,7 +91,7 @@ export class ProductList implements OnInit {
   onButtonNextPage(pageNumber:number){
     this.showProduct = this.paginatedProduct[pageNumber - 1]
     this.currentPage = pageNumber - 1
-    console.log(this.currentPage)
+    //console.log(this.currentPage)
   }
 
   //#endregion
@@ -104,7 +104,7 @@ export class ProductList implements OnInit {
         next:(res) => {this.baseProducts = res
           this.updateProductPerPage()
           this.filterProduct('ทั้งหมด')
-          console.log('baseProduct : ',this.baseProducts)
+          //console.log('baseProduct : ',this.baseProducts)
         },
         error:(err) => console.error("ERROR LoadProduct : " + err)
       }
