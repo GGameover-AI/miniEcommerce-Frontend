@@ -1,12 +1,12 @@
 <div class="container mx-auto max-w-md mt-4 space-y-6">
   <!--User Info-->
-  <div class="flex justify-between items-center space-x-6 p-4 bg-white">
+  <div class="flex justify-between items-center space-x-1 lg:space-x-6 p-4 bg-white">
     <div>
-      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="w-16 h-16 rounded-full shadow" />
+      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="w-12 h-12 lg:w-16 lg:h-16 rounded-full shadow" />
     </div>
     <div>
       <p class="text-2xl lg:text-4xl font-semibold">{{userInfo.unique_name}}</p>
-      <p class="text-lg">{{ userInfo.email }}</p>
+      <p class="text-base lg:text-lg">{{ userInfo.email }}</p>
     </div>
     <div>
       <button (click)="onLogout()" class="bg-red-500 p-2 rounded-full text-center hover:bg-red-400 cursor-pointer">
