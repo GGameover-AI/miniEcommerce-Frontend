@@ -22,7 +22,7 @@ export class Profile implements OnInit {
   }
 
   orderList: OrderHistoryModel[] = []
-  userInfo: UserInfoModel = { sub: '', unique_name: '', email: '' }
+  userInfo: UserInfoModel | undefined
 
   // ถ้าไม่ประกาศ (OrderHistoryModel & {expand:boolean})[] expend ใน onExpend จะหาไม่เจอ
   //& {expand:boolean,total:number} คือการประกาศ field เพิ่ม

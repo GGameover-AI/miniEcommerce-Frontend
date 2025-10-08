@@ -5,8 +5,8 @@
       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="w-12 h-12 lg:w-16 lg:h-16 rounded-full shadow" />
     </div>
     <div>
-      <p class="text-2xl lg:text-4xl font-semibold">{{userInfo.unique_name}}</p>
-      <p class="text-base lg:text-lg">{{ userInfo.email }}</p>
+      <p class="text-2xl lg:text-4xl font-semibold">{{userInfo?.['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']}}</p>
+      <p class="text-base lg:text-lg">{{ userInfo?.email }}</p>
     </div>
     <div>
       <button (click)="onLogout()" class="bg-red-500 p-2 rounded-full text-center hover:bg-red-400 cursor-pointer">
