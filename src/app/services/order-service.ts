@@ -17,7 +17,7 @@ export class OrderService {
   orderHistory$ = this.orderHistory.asObservable()
 
   private getHeader():HttpHeaders{
-    const token = sessionStorage.getItem('jwt_token') || '';
+    const token = sessionStorage.getItem('jwt_token');
     return new HttpHeaders({
       'Authorization':`Bearer ${token}`,
       'Content-Type':'application/json'
@@ -27,7 +27,7 @@ export class OrderService {
   //ดึงรายการสั่งซื้อทั้งหมด
   fetchOrders():void {
     const headers = this.getHeader()
-    this.http.get<OrderHistoryModel[]>(`${this.API_URL}/GetOrders`,{headers}).subscribe(
+    this.http.get<OrderHistoryModel[]>(`${this.API_URL}`,{headers}).subscribe(
       {
         next: (res) => this.orderHistory.next(res)
       }
@@ -37,7 +37,7 @@ export class OrderService {
   //สร้างรายการสั่งซื้อ
   createOrder(orderInfo:OrderModel): Observable<string> {
     const headers = this.getHeader()
-    return this.http.post<string>(`${this.API_URL}/CreateOrder`, orderInfo,{headers})
+    return this.http.post<string>(`${this.API_URL}`, orderInfo,{headers})
   }
 
 }
