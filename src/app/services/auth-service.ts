@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { UserRegisterModel } from '../models/user-register-model';
 import { UserInfoModel } from '../models/user-info-model';
 import {jwtDecode} from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ import {jwtDecode} from 'jwt-decode';
 export class AuthService {
   constructor(private http:HttpClient,private route:Router){}
 
-  private API_URL:string = 'https://localhost:7112/Auth'
+  private API_URL:string = environment.apiUrl
   private tokenKey:string = 'jwt_token'
 
   login(user:UserLoginModel):Observable<any>{
-    return this.http.post<any>(`${this.API_URL}/login`,user)
+    return this.http.post<any>(`${this.API_URL}/Auth/login`,user)
     .pipe(
       tap(
         res => {
@@ -31,7 +32,7 @@ export class AuthService {
   }
 
   register(createUser:UserRegisterModel):Observable<any>{
-    return this.http.post<any>(`${this.API_URL}/Register`,createUser)
+    return this.http.post<any>(`${this.API_URL}/Auth/Register`,createUser)
   }
 
   logout(){
