@@ -41,6 +41,7 @@ export class Profile implements OnInit {
   }
 
   loadOrderHistory() {
+    this.orderService.fetchOrders()
     this.orderService.orderHistory$.subscribe(
       {
         next: (res) => { 
