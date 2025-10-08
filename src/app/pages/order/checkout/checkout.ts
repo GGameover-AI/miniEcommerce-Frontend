@@ -6,6 +6,7 @@ import { ProductModel } from '../../../models/product-model';
 import { OrderModel } from '../../../models/order-model';
 import { OrderService } from '../../../services/order-service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
@@ -42,7 +43,7 @@ export class Checkout {
   get cardCVVorCVC() { return this.userCredit.get('cardCVVorCVC') }
 
   onSubmit() {
-    this.cartService.cartStock$.subscribe(
+    this.cartService.cartStock$.pipe(take(1)).subscribe(
       {
         next: (res) => {
           const orderInfo: OrderModel = {
@@ -58,10 +59,11 @@ export class Checkout {
             products: res
           }
 
-          this.orderService.createOrder(orderInfo).subscribe(
+          this.orderService.createOrder(orderInfo).pipe(take(1)).subscribe(
             {
               next:(res) => {
-                alert(res)
+                alert(res.message)
+                this.cartService.clearCart()
                 this.route.navigate([''])
               },
               error:(err)=>{
