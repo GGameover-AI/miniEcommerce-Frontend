@@ -1,4 +1,4 @@
 export const environment = {
     production:true,
-    apiUrl:'https://localhost:7112'
+    apiUrl:'https://adisorn-miniecommerce-backend.onrender.com'
 };
