@@ -54,7 +54,9 @@
             d="M4 4a1 1 0 0 1 1-1h1.5a1 1 0 0 1 .979.796L7.939 6H19a1 1 0 0 1 .979 1.204l-1.25 6a1 1 0 0 1-.979.796H9.605l.208 1H17a3 3 0 1 1-2.83 2h-2.34a3 3 0 1 1-4.009-1.76L5.686 5H5a1 1 0 0 1-1-1Z"
           />
         </svg>
-        <span [ngClass]="{'opacity-100': productsInCart >= 1}" class="absolute opacity-0 transition-opacity duration-200 ease-in-out min-w-4 min-h-4 lg:min-w-5 lg:min-h-5 bg-emerald-500 text-white text-xs lg:text-sm text-center rounded-full -top-1 left-3 lg:-top-0.5 lg:left-5 op">{{productsInCart}}</span>
+        <span [ngClass]="{'opacity-100': productsInCart >= 1,'scale-110':isExpand,'scale-100':!isExpand}" 
+
+          class="absolute opacity-0 transition-opacity duration-200 ease-in-out min-w-4 min-h-4 lg:min-w-5 lg:min-h-5 bg-emerald-500 text-white text-xs lg:text-sm text-center rounded-full -top-1 left-3 lg:-top-0.5 lg:left-5 ">{{productsInCart}}</span>
       </a>
 
       <p class="text-white lg:text-xl">|</p>
