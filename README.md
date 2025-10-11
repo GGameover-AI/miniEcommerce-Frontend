@@ -3,8 +3,9 @@
 - ไม่จำเป็นต้องใช้ข้อมูลจริงในการใช้งานเว็บ
 
 # 💻 **Techstack**
-Frontend : Angular + Tailwind CSS
-Backend  : .Net Core Web API
-Database : PostgreSQL
+Frontend : Angular + Tailwind CSS  
+Backend  : .Net Core Web API  
+Database : PostgreSQL  
 
-# 📚 **คู่มือใช้งาน**
+# 📚 **คู่มือการใช้งาน**
+หน้า Login
