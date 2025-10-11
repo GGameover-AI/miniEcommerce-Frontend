@@ -85,6 +85,7 @@
       </div>
     </div>
 
-    <div *ngIf="orderList.length <= 0" class="text-center">ไม่พบประวัติสั่งซื้อ</div>
+    <div *ngIf="isLoadingOrder" class="text-center">กำลังโหลดประวัติสั่งซื้อ....</div>
+    <div *ngIf="orderList.length <= 0 && !isLoadingOrder" class="text-center">ไม่พบประวัติสั่งซื้อ</div>
   </div>
 </div>

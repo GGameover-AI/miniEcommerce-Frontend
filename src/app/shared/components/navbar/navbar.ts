@@ -22,6 +22,11 @@ export class Navbar implements OnInit {
     this.searchObserver()
   }
 
+  isExpand:boolean = false
+  private expandTimeout?:ReturnType<typeof setTimeout>
+  private collapseTimeout?:ReturnType<typeof setTimeout>
+
+
   baseProduct: ProductModel[] = []
   filteredProduct:ProductModel[] = []
   productsInCart:number = 0
@@ -29,23 +34,27 @@ export class Navbar implements OnInit {
 
   searchBox = new FormControl('')
 
+  //แสดงตามคำที่ค้นหาโดยไม่เอาสินค้าที่มีจำนวน 0
   filterKeyword(keyword:string){
     keyword = keyword.toLowerCase()
     this.filteredProduct = this.baseProduct.filter(p => p.name.toLowerCase().includes(keyword)&& p.quantity !== 0)
   }
 
+  //รับค่าที่ค้นหา
   searchObserver(){
     this.searchBox.valueChanges.subscribe(
       keyword => {this.filterKeyword(keyword ?? '')}
     )
   }
 
+  //กดเลือกสินค้า
   onSearchProduct(id:number){
     this.router.navigate(['/detail',id])
     this.searchBox.setValue('')
     //console.log('Card Click!')
   }
 
+  //ดึงข้อมูลสินค้ามาไว้ใช้ใน การค้นหา
   loadProduct() {
     this.productService.originProduct$.subscribe(
       res => {
@@ -55,11 +64,38 @@ export class Navbar implements OnInit {
     )
   }
 
+  //ติดตามจำนวนสินค้า
   loadCart(){
     this.cartService.cartStock$.subscribe(
       res => {
         this.productsInCart = res.length
+        this.animCartItem()
       }
     )
   }
+
+  //anim ของไอคอนบอกจำนวนสินค้าในตะกร้า
+  animCartItem(){
+
+    //เคลียร์animเก่า
+    if(this.expandTimeout) clearTimeout(this.expandTimeout)
+    if(this.collapseTimeout) clearTimeout(this.collapseTimeout)
+
+    //รีเซ็ตสถานะ
+    this.isExpand = false
+
+    //ดีเลย์ไว้ DOM จับการเปลี่ยนแปลง
+    this.expandTimeout = setTimeout(
+      ()=>{
+        this.isExpand = true
+      },50)
+
+    this.collapseTimeout = setTimeout(
+      ()=>{
+        this.isExpand = false
+      },1000)
+
+  }
+
+
 }
