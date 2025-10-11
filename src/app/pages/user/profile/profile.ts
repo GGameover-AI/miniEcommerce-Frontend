@@ -16,6 +16,8 @@ export class Profile implements OnInit {
 
   constructor(private authService: AuthService, private orderService: OrderService) { }
 
+  isLoadingOrder:boolean = true
+
   ngOnInit(): void {
     this.loadProfile()
     this.loadOrderHistory()
@@ -52,8 +54,9 @@ export class Profile implements OnInit {
               expand: false,
               total:e.products.reduce((sum,p) => sum + (p.price*p.quantity),0) 
             }))
+          this.isLoadingOrder = false
         },
-        error: (err) => console.log(err)
+        error: (err) => {this.isLoadingOrder = false}
       }
     )
   }
