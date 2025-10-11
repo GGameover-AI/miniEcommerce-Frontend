@@ -4,15 +4,20 @@ import { AuthService } from '../../../services/auth-service';
 import { UserRegisterModel } from '../../../models/user-register-model';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { Loading } from "../../../shared/components/loading/loading";
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink, NgClass],
+  imports: [ReactiveFormsModule, RouterLink, NgClass, Loading],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
 export class Register {
   constructor(private authService: AuthService,private route:Router) { }
+
+  //Loading
+  message:string = 'กำลังสร้างบัญชี'
+  isLoading:boolean = false
 
   //#region Form
   formRegister = new FormGroup({
@@ -53,6 +58,7 @@ export class Register {
 
   onRegister() {
     if (this.formRegister.valid) {
+      this.isLoading = true
       const registerPayload: UserRegisterModel = {
         "username": this.formRegister.get('username')?.value as string,
         "password": this.formRegister.get('password')?.value as string,
@@ -61,11 +67,19 @@ export class Register {
 
       this.authService.register(registerPayload).subscribe(
         {
-          error: (err) => { alert(err.error?.message || 'เกิดข้อผิดพลาด') }
+          next:()=>{
+            this.isLoading = true
+            alert('สร้างบัญชีสำเร็จ')
+            this.route.navigate(['/login'])
+          },
+          error: (err) => { 
+            this.isLoading = true
+            alert(err.error?.message || 'เกิดข้อผิดพลาด:Server อาจอยู่ในโหมด Sleep ZZzzz...') 
+          }
         }
       )
 
-      this.route.navigate(['/login'])
+      
     } else {
       alert('ข้อมูลบางส่วนไม่ถูกต้อง')
     }
