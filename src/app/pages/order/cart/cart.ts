@@ -35,6 +35,12 @@ export class Cart implements OnInit {
   }
   //#endregion
 
+  onClearList(){
+    if(confirm('ต้องการลบรายการทั้งหมดหรือไม่')){
+      this.cartService.clearCart()
+    }
+  }
+
   //TotalPrice
   totalPrice(){
     return this.currentCart.reduce((sum,p) => sum + (p.price * p.quantity),0)

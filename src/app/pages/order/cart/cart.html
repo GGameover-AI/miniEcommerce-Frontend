@@ -94,7 +94,8 @@
 
   <!--Total Price-->
   <div class="mt-4" *ngIf="currentCart.length > 0">
-    <div class="flex justify-end items-center">
+    <div class="flex justify-between items-center">
+      <button (click)="onClearList()" class="text-sm text-red-400 underline">ลบรายการสินค้าทั้งหมด</button>
       <p class="text-lg font-medium">
         รวมทั้งสิ้น :
         <span class="text-2xl">{{ totalPrice() | currency : '฿' : 'symbol' : '1.0-2' }}</span>
