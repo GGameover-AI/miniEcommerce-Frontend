@@ -4,7 +4,7 @@ import { OrderModel } from '../models/order-model';
 import { CartService } from './cart-service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OrderHistoryModel } from '../models/order-history-model';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
