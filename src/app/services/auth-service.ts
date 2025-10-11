@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { UserRegisterModel } from '../models/user-register-model';
 import { UserInfoModel } from '../models/user-info-model';
 import {jwtDecode} from 'jwt-decode';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
