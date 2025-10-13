@@ -8,4 +8,12 @@ Backend  : .Net Core Web API
 Database : PostgreSQL  
 
 # 📚 **คู่มือการใช้งาน**
-หน้า Login
+🔐 **หน้า Login**  
+  
+<p align="center">
+  <img src="./Previews/pages/login.png" width="512" height="512">
+</p>
+  
+  หน้าแรกที่ผู้ใช้ทุกคนจะต้องลงชื่อเข้าใช้ หากยังไม่มีบัญชีสามารถสร้างได้ที่ด้านล่างกดที่คำว่า `สมัครสมาชิก`  
+  
+⚠ **ปัญหาที่อาจพบเจอ**
