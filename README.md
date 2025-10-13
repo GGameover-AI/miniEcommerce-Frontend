@@ -4,6 +4,8 @@
 - แผนแรกในการ deploy backend จะใช้ SQL Server แต่มีปัญหาในการสมัคร Free Tier ของ Azure
 - จึงต้องเปลี่ยน database เป็น postgreSQL เพื่อให้สามารถ deploy ได้บน Render
 
+🧑‍💻 Backend Github : [Cilck](https://github.com/GGameover-AI/miniEcommerce-Backend/tree/NpgSQL-Deploy)
+
 # 💻 **Techstack**
 Frontend : Angular + Tailwind CSS  
 Backend  : .Net Core Web API  
