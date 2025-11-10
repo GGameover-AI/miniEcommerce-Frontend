@@ -1,2 +1,7 @@
-<app-navbar *ngIf="loginCheck"/>
+<div class="fixed inset-0 flex items-center justify-center bg-black/50 mx-auto z-50 p-4">
+    <div class="bg-red-500 text-white rounded-2xl p-4">
+        เนื่องจาก<strong class="underline">ฐานข้อมูล</strong>ที่ใช้อยู่หมดอายุการใช้งาน จึงไม่สามารถใช้งานเว็บได้ในขณะนี้
+    </div>
+</div>
+<app-navbar *ngIf="loginCheck" />
 <router-outlet></router-outlet>
